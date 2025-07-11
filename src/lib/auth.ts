@@ -8,9 +8,9 @@ import { prisma } from "@/lib/prisma";
 const resend = new ResendClient(process.env.AUTH_RESEND_KEY!);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-    pages: {
-        signIn: "/signin",
-    },
+	pages: {
+		signIn: "/signin",
+	},
 	providers: [
 		Google,
 		Resend({
@@ -35,5 +35,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 	session: {
 		strategy: "jwt",
 	},
-	secret: process.env.NEXTAUTH_SECRET,
+	secret: process.env.AUTH_SECRET,
 });
