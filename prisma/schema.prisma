@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -23,8 +17,15 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
   Authenticator Authenticator[]
+  redeemedCodes RedeemedCode[]
+
+  // New fields
+  plan          String            @default("FREE")
+  subscription  Subscription?
+  payments      Payment[]
+  featureLimits FeatureLimit[]
+  shortLinks    ShortLink[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -69,7 +70,6 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-// Optional for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
   userId               String
@@ -83,4 +83,95 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([userId, credentialID])
+}
+
+model Subscription {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  status            String // e.g. active, canceled
+  interval          String // monthly, yearly
+  currentPeriodEnd  DateTime
+  cancelAtPeriodEnd Boolean   @default(false)
+  canceledAt        DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id         String   @id @default(cuid())
+  userId     String
+  amount     Int // in cents
+  currency   String // e.g. "usd"
+  provider   String // e.g. "stripe"
+  providerId String // ID dari Stripe, Midtrans, dll
+  status     String // success, failed, pending
+  paidAt     DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FeatureLimit {
+  id      String @id @default(cuid())
+  userId  String
+  feature String
+  value   Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ShortLink {
+  id          String    @id @default(cuid())
+  userId      String
+  slug        String    @unique
+  destination String
+  isActive    Boolean   @default(true)
+  clickCount  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clickLogs ClickLog[]
+}
+
+model ClickLog {
+  id          String   @id @default(cuid())
+  shortLinkId String
+  ip          String?
+  country     String?
+  userAgent   String?
+  referrer    String?
+  clickedAt   DateTime @default(now())
+
+  shortLink ShortLink @relation(fields: [shortLinkId], references: [id], onDelete: Cascade)
+}
+
+model RedeemCode {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  description String?
+  discountPct Int // 0 - 100
+  maxUse      Int? // Optional: total penggunaan maks
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  redeemedBy RedeemedCode[]
+}
+
+model RedeemedCode {
+  id           String   @id @default(cuid())
+  userId       String
+  redeemCodeId String
+  redeemedAt   DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  redeemCode RedeemCode @relation(fields: [redeemCodeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, redeemCodeId])
 }
