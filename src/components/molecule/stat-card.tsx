@@ -14,15 +14,15 @@ type StatCardProps = {
 import { GetTotalClick, GetTotalClickPerDay, GetTotalLink } from "@/actions/stat.action";
 
 export const StatCardContainer = async () => {
-	const totalClick = await GetTotalClick();
 	const totalClickPerDay = await GetTotalClickPerDay();
 	const totalLink = await GetTotalLink();
+	const totalClick = await GetTotalClick();
 
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
-			<StatCard counter={totalClick} icon={IoLinkOutline} label="Total Links" premium={false} />
+		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+			<StatCard counter={totalLink} icon={IoLinkOutline} label="Total Links" premium={false} />
 			<StatCard counter={totalClickPerDay} icon={FaArrowTrendUp} label="Total Clicks" premium={false} />
-			<StatCard counter={totalLink} icon={LuChartColumnIncreasing} label="Clicked Today" premium={false} />
+			<StatCard counter={totalClick} icon={LuChartColumnIncreasing} label="Clicked Today" premium={false} />
 			<StatCard counter={2} icon={RiVipCrown2Line} label="Incoming Feature" premium={true} />
 		</div>
 	);

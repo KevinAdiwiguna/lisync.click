@@ -8,7 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
   id            String          @id @default(cuid())
   name          String?
@@ -21,7 +20,7 @@ model User {
   redeemedCodes RedeemedCode[]
 
   // New fields
-  plan          String            @default("FREE")
+  plan          String         @default("FREE")
   subscription  Subscription?
   payments      Payment[]
   featureLimits FeatureLimit[]
@@ -123,6 +122,8 @@ model FeatureLimit {
   value   Int
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, feature])
 }
 
 model ShortLink {

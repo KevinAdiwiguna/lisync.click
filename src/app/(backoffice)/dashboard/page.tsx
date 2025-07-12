@@ -1,7 +1,6 @@
-import { CreateLink } from "@/components/molecule/create-link";
+import { CreateLinkContainer } from "@/components/molecule/create-link";
 import { StatCardContainer, StatCardContainerskeleton } from "@/components/molecule/stat-card";
 import React, { Suspense } from "react";
-
 
 const page = () => {
 	return (
@@ -10,7 +9,7 @@ const page = () => {
 				<StatCardContainer />
 			</Suspense>
 
-            <CreateLink />
+			<CreateLinkContainer />
 		</div>
 	);
 };

@@ -5,11 +5,27 @@ import { Resend as ResendClient } from "resend";
 import { generateLoginEmailHTML } from "@/components/organism/email-html";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma"; // ini dari generated
-import { PrismaClient as DefaultPrismaClient } from "@prisma/client";
 
-
-const adapterClient = new DefaultPrismaClient();
 const resend = new ResendClient(process.env.AUTH_RESEND_KEY);
+
+const defaultLimitsByPlan = {
+	basic: [
+		{ feature: "short_link_limit", value: 50 },
+		{ feature: "qr_code_limit", value: 25 },
+	],
+	standard: [
+		{ feature: "short_link_limit", value: 100 },
+		{ feature: "qr_code_limit", value: 50 },
+	],
+	pro: [
+		{ feature: "short_link_limit", value: 200 },
+		{ feature: "qr_code_limit", value: 100 },
+	],
+	bisnis: [
+		{ feature: "short_link_limit", value: 500 },
+		{ feature: "qr_code_limit", value: 250 },
+	],
+};
 
 declare module "next-auth" {
 	interface Session {
@@ -43,7 +59,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		}),
 	],
 
-	adapter: PrismaAdapter(adapterClient),
+	adapter: PrismaAdapter(prisma),
 	session: {
 		strategy: "jwt",
 	},
@@ -51,13 +67,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 	events: {
 		async createUser({ user }) {
+			const plan = "basic";
+
 			await prisma.user.update({
 				where: { id: user.id },
-				data: { plan: "FREE" },
+				data: { plan },
 			});
+
+			const limits = defaultLimitsByPlan[plan];
+
+			if (limits && limits.length > 0) {
+				await prisma.featureLimit.createMany({
+					data: limits.map((limit) => ({
+						userId: user.id!,
+						feature: limit.feature,
+						value: limit.value,
+					})),
+				});
+			}
 		},
 	},
-
 	callbacks: {
 		async jwt({ token, user }) {
 			if (user?.email) {
