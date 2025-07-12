@@ -156,8 +156,8 @@ model RedeemCode {
   id          String    @id @default(cuid())
   code        String    @unique
   description String?
-  discountPct Int // 0 - 100
-  maxUse      Int? // Optional: total penggunaan maks
+  discountPct Int
+  maxUse      Int?
   expiresAt   DateTime?
   createdAt   DateTime  @default(now())
 

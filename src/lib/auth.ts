@@ -1,12 +1,24 @@
-import NextAuth from "next-auth";
+import NextAuth, { DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import Resend from "next-auth/providers/resend";
 import { Resend as ResendClient } from "resend";
 import { generateLoginEmailHTML } from "@/components/organism/email-html";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma"; // ini dari generated
+import { PrismaClient as DefaultPrismaClient } from "@prisma/client";
 
+
+const adapterClient = new DefaultPrismaClient();
 const resend = new ResendClient(process.env.AUTH_RESEND_KEY);
+
+declare module "next-auth" {
+	interface Session {
+		user: {
+			address: string;
+			plan: string;
+		} & DefaultSession["user"];
+	}
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	pages: {
@@ -31,7 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		}),
 	],
 
-	adapter: PrismaAdapter(prisma),
+	adapter: PrismaAdapter(adapterClient),
 	session: {
 		strategy: "jwt",
 	},
@@ -63,8 +75,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 		async session({ session, token }) {
 			if (session.user && token) {
-				session.user.id = token.id ;
-				session.user.plan = token.plan ;
+				session.user.id = token.id as string;
+				session.user.plan = token.plan as string;
 			}
 			return session;
 		},
