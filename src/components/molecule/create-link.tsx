@@ -25,3 +25,33 @@ export const CreateLinkContainer = async () => {
 		</div>
 	);
 };
+
+export const CreateLinkContainerSkeleton = () => {
+	return (
+		<div className="bg-base-100 animate-pulse py-5 px-4 rounded-field shadow-xl space-y-6">
+			<div className="flex justify-center items-center w-full gap-x-4">
+				<div className="w-full p-5 animate-pulse bg-base-200 rounded-field"></div>
+				<div className="w-full p-5 animate-pulse bg-base-200 rounded-field"></div>
+				<div className="w-full p-5 animate-pulse bg-base-200 rounded-field"></div>
+			</div>
+
+			<div className="space-y-3">
+				<div className="w-full animate-pulse bg-base-200">
+					<div className="bg-base-300 w-full py-5 rounded-field"></div>
+				</div>
+				<div className="w-full animate-pulse bg-base-200">
+					<div className="bg-base-300 w-full py-5 rounded-field"></div>
+				</div>
+				<div className="w-full animate-pulse bg-base-200">
+					<div className="bg-base-300 w-full py-5 rounded-field"></div>
+				</div>
+				<div className="w-full animate-pulse bg-base-200">
+					<div className="bg-base-300 w-full py-5 rounded-field"></div>
+				</div>
+				<div className="w-full animate-pulse bg-base-200">
+					<div className="bg-base-300 w-full py-5 rounded-field"></div>
+				</div>
+			</div>
+		</div>
+	);
+};

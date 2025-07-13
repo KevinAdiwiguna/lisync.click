@@ -18,14 +18,8 @@ export const CopyButton = ({ text }: CopyButtonProps) => {
 	};
 
 	return (
-		<Button
-            color="outline"
-			type="button"
-            className="p-2"
-			onClick={handleCopy}
-			title={copied ? "Disalin!" : "Salin"}
-		>
-			<FiCopy className="w-5 h-5" />
+		<Button color="outline" type="button" className="p-2" onClick={handleCopy} title={copied ? "Disalin!" : "Salin"}>
+			<FiCopy className="w-4 h-4" />
 		</Button>
 	);
 };

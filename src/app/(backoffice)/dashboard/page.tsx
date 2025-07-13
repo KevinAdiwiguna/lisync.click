@@ -1,4 +1,4 @@
-import { CreateLinkContainer } from "@/components/molecule/create-link";
+import { CreateLinkContainer, CreateLinkContainerSkeleton } from "@/components/molecule/create-link";
 import { StatCardContainer, StatCardContainerskeleton } from "@/components/molecule/stat-card";
 import React, { Suspense } from "react";
 
@@ -9,7 +9,9 @@ const page = () => {
 				<StatCardContainer />
 			</Suspense>
 
-			<CreateLinkContainer />
+			<Suspense fallback={<CreateLinkContainerSkeleton />}>
+				<CreateLinkContainer />
+			</Suspense>
 		</div>
 	);
 };

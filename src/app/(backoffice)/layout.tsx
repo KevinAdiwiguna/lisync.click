@@ -5,6 +5,7 @@ import { NavProvider } from "@/context/nav-context";
 import Sidebar from "@/components/organism/sidebar";
 import { TopBar } from "@/components/organism/top-bar";
 import { SessionProvider } from "next-auth/react";
+import { ReactQueryProvider } from "@/providers/react-query-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -59,19 +60,21 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<NavProvider>
-					<div className="max-h-screen h-screen flex">
-						<div className="h-screen">
-							<Sidebar />
-						</div>
-						<div className="overflow-auto max-h-screen w-full">
-							<TopBar />
-							<div className="p-6">
-								<SessionProvider>{children}</SessionProvider>
+				<ReactQueryProvider>
+					<NavProvider>
+						<div className="max-h-screen h-screen flex">
+							<div className="h-screen">
+								<Sidebar />
+							</div>
+							<div className="overflow-auto max-h-screen w-full">
+								<TopBar />
+								<div className="p-6">
+									<SessionProvider>{children}</SessionProvider>
+								</div>
 							</div>
 						</div>
-					</div>
-				</NavProvider>
+					</NavProvider>
+				</ReactQueryProvider>
 			</body>
 		</html>
 	);

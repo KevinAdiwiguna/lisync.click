@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import { ShortLinkList } from "./components/short-link-list";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+const page = async () => {
+	return (
+		<div>
+			<ShortLinkList />
+		</div>
+	);
+};
 
-export default page
+export default page;

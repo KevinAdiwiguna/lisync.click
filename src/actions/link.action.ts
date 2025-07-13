@@ -2,24 +2,9 @@
 
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { GetFiveLastLinkResponse } from "@/types/shortlink";
 import { nanoid } from "nanoid";
 import { revalidatePath } from "next/cache";
-
-export interface ShortLinkItem {
-	id: string;
-	slug: string;
-	destination: string;
-	createdAt: Date;
-	clickCount: number;
-	isActive: boolean;
-	expiresAt: Date | null;
-}
-
-export interface GetFiveLastLinkResponse {
-	success: boolean;
-	data?: ShortLinkItem[];
-	error?: string;
-}
 
 export const CreateLinkData = async (formData: FormData) => {
 	const session = await auth();
@@ -151,6 +136,57 @@ export const GetFiveLastLink = async (): Promise<GetFiveLastLinkResponse> => {
 		return {
 			success: false,
 			error: "failed to get data",
+		};
+	}
+};
+
+export const DeleteShortLink = async (id: string): Promise<{ success: boolean; error?: string }> => {
+	const session = await auth();
+
+	if (!session?.user?.id) {
+		return {
+			success: false,
+			error: "Unauthenticated",
+		};
+	}
+
+	if (!id || typeof id !== "string") {
+		return {
+			success: false,
+			error: "Invalid or missing ID",
+		};
+	}
+
+	try {
+		const shortLink = await prisma.shortLink.findUnique({
+			where: { id },
+			select: {
+				id: true,
+				userId: true,
+			},
+		});
+
+		if (!shortLink || shortLink.userId !== session.user.id) {
+			return {
+				success: false,
+				error: "Unauthorized access or link not found",
+			};
+		}
+
+		await prisma.shortLink.delete({
+			where: { id: shortLink.id },
+		});
+
+		revalidatePath("/dashboard/links");
+
+		return {
+			success: true,
+		};
+	} catch (error) {
+		console.error("DeleteShortLink error:", error);
+		return {
+			success: false,
+			error: "Internal server error",
 		};
 	}
 };

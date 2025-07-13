@@ -130,6 +130,7 @@ model ShortLink {
   id          String    @id @default(cuid())
   userId      String
   slug        String    @unique
+  customSlug  Boolean   @default(false)
   destination String
   isActive    Boolean   @default(true)
   clickCount  Int       @default(0)
