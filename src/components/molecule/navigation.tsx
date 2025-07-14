@@ -1,41 +1,20 @@
 "use client";
-
 import Link from "next/link";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { ReactNode } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Button from "@/components/atom/button";
-
-const NavContext = createContext<{
-	isOpen: boolean;
-	toggle: () => void;
-	close: () => void;
-} | null>(null);
-
-const useNav = () => {
-	const context = useContext(NavContext);
-	if (!context) throw new Error("useNav must be used within NavContext");
-	return context;
-};
-
-function NavProvider({ children }: { children: ReactNode }) {
-	const [isOpen, setIsOpen] = useState(false);
-	const toggle = () => setIsOpen((prev) => !prev);
-	const close = () => setIsOpen(false);
-	return <NavContext.Provider value={{ isOpen, toggle, close }}>{children}</NavContext.Provider>;
-}
+import { useNav } from "@/context/nav-context";
 
 export default function Navbar() {
 	return (
-		<NavProvider>
-			<nav className="fixed top-0 left-0 w-full z-50 bg-base-200 border-gray-200">
-				<div className="md:hidden">
-					<MobileNav />
-				</div>
-				<div className="hidden md:flex">
-					<DesktopNav />
-				</div>
-			</nav>
-		</NavProvider>
+		<nav className="fixed top-0 left-0 w-full z-50 bg-base-200 border-gray-200">
+			<div className="md:hidden">
+				<MobileNav />
+			</div>
+			<div className="hidden md:flex">
+				<DesktopNav />
+			</div>
+		</nav>
 	);
 }
 

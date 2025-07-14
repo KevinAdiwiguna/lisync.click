@@ -1,5 +1,5 @@
 import GoogleSignInButton from "../components/google-signin-button";
-import ResendEmailSignInForm from "../components/resend-signin-form";
+import ResendEmailSignUpForm from "./components/resend-signup-form";
 
 const SignIn = () => {
 	return (
@@ -20,7 +20,7 @@ const SignIn = () => {
 					<div className="w-full border-t border-black" />
 				</div>
 
-				<ResendEmailSignInForm />
+				<ResendEmailSignUpForm />
 
 				<p className="text-xs text-base-content/60 leading-relaxed">Fast, free & secure link shortening — no strings attached.</p>
 			</div>

@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  Authenticator Authenticator[]
+  redeemedCodes RedeemedCode[]
+
+  // New fields
+  plan          String         @default("FREE")
+  subscription  Subscription?
+  payments      Payment[]
+  featureLimits FeatureLimit[]
+  shortLinks    ShortLink[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Subscription {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  status            String // e.g. active, canceled
+  interval          String // monthly, yearly
+  currentPeriodEnd  DateTime
+  cancelAtPeriodEnd Boolean   @default(false)
+  canceledAt        DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id         String   @id @default(cuid())
+  userId     String
+  amount     Int // in cents
+  currency   String // e.g. "usd"
+  provider   String // e.g. "stripe"
+  providerId String // ID dari Stripe, Midtrans, dll
+  status     String // success, failed, pending
+  paidAt     DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FeatureLimit {
+  id      String @id @default(cuid())
+  userId  String
+  feature String
+  value   Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, feature])
+}
+
+model ShortLink {
+  id          String    @id @default(cuid())
+  userId      String
+  slug        String    @unique
+  customSlug  Boolean   @default(false)
+  destination String
+  isActive    Boolean   @default(true)
+  clickCount  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  withAds     Boolean   @default(true)
+  skipCheck Boolean   @default(false)
+  captcha     Boolean   @default(true)
+  expiresAt   DateTime?
+  updatedAt   DateTime  @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clickLogs ClickLog[]
+}
+
+model ClickLog {
+  id          String   @id @default(cuid())
+  shortLinkId String
+  ip          String?
+  country     String?
+  userAgent   String?
+  referrer    String?
+  clickedAt   DateTime @default(now())
+
+  shortLink ShortLink @relation(fields: [shortLinkId], references: [id], onDelete: Cascade)
+}
+
+model RedeemCode {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  description String?
+  discountPct Int
+  maxUse      Int?
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  redeemedBy RedeemedCode[]
+}
+
+model RedeemedCode {
+  id           String   @id @default(cuid())
+  userId       String
+  redeemCodeId String
+  redeemedAt   DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  redeemCode RedeemCode @relation(fields: [redeemCodeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, redeemCodeId])
+}
