@@ -26,7 +26,10 @@ export async function GET(req: Request) {
 			clickCount: true,
 			isActive: true,
 			expiresAt: true,
-			customSlug: true
+			customSlug: true,
+			withAds: true,
+			skipCheck: true,
+			captcha: true,
 		},
 	});
 

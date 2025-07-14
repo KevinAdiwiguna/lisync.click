@@ -69,6 +69,8 @@ export const ShortLinkList = () => {
 								<div className="flex flex-wrap gap-x-4 gap-y-1 text-xs mt-2 text-base-content/80">
 									<p>Created: {new Date(res.createdAt).toLocaleDateString("id-ID")}</p>
 									<p>Clicks: {res.clickCount}</p>
+									<p>Adds: {res.withAds === true ? "on" : "off"}</p>
+									<p>Captcha: {res.captcha === true ? "on" : "off"}</p>
 								</div>
 							</div>
 

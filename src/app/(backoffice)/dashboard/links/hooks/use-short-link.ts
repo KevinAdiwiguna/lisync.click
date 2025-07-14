@@ -8,7 +8,10 @@ type ShortLink = {
 	clickCount: number;
 	isActive: boolean;
 	expiresAt: string | null;
-    customSlug: boolean
+	customSlug: boolean;
+	withAds: boolean;
+	skipCheck: boolean;
+	captcha: boolean;
 };
 
 type PaginatedResponse = {

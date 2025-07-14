@@ -135,6 +135,9 @@ model ShortLink {
   isActive    Boolean   @default(true)
   clickCount  Int       @default(0)
   createdAt   DateTime  @default(now())
+  withAds     Boolean   @default(true)
+  skipCheck Boolean   @default(false)
+  captcha     Boolean   @default(true)
   expiresAt   DateTime?
   updatedAt   DateTime  @updatedAt
 
