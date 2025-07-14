@@ -3,12 +3,12 @@ import { prisma } from "../../../lib/prisma";
 import { headers } from "next/headers";
 
 interface Props {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 }
 
 export default async function SlugPage({ params }: Props) {
 	const headersList = await headers();
-	const { slug } = params;
+	const { slug } = await params;
 
 	const link = await prisma.shortLink.findUnique({
 		where: {
