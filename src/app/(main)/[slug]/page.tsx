@@ -1,11 +1,13 @@
 import { notFound } from "next/navigation";
 import { prisma } from "../../../lib/prisma";
+import { headers } from "next/headers";
 
 interface Props {
 	params: { slug: string };
 }
 
 export default async function SlugPage({ params }: Props) {
+	const headersList = await headers();
 	const { slug } = params;
 
 	const link = await prisma.shortLink.findUnique({
@@ -15,6 +17,7 @@ export default async function SlugPage({ params }: Props) {
 		},
 		select: {
 			destination: true,
+			id: true,
 		},
 	});
 
@@ -30,6 +33,21 @@ export default async function SlugPage({ params }: Props) {
 			clickCount: {
 				increment: 1,
 			},
+		},
+	});
+
+	const country = null;
+	const userAgent = headersList.get("user-agent") ?? null;
+	const referrer = headersList.get("referer") ?? null;
+	const ipAddress = headersList.get("x-forwarded-for") ?? null;
+
+	await prisma.clickLog.create({
+		data: {
+			shortLinkId: link.id,
+			country: country,
+			userAgent: userAgent,
+			referrer: referrer,
+			ip: ipAddress,
 		},
 	});
 

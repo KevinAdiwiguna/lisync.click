@@ -6,7 +6,7 @@ export function generateLoginEmailHTML(url: string, host: string) {
       <table width="100%" style="max-width: 600px; margin: auto; background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.05);">
         <tr>
           <td align="center">
-            <img src="https://${host}/logo.png" alt="Zync.click Logo" width="60" style="margin-bottom: 16px;" />
+            <img src="${process.env.AUTH_URL}/logo.png" alt="Zync.click Logo" width="60" style="margin-bottom: 16px;" />
             <h1 style="color: #333; font-size: 24px; margin: 0 0 10px;">Login ke <strong>Zync.click</strong></h1>
             <p style="font-size: 15px; color: #666; margin-bottom: 20px;">Klik tombol di bawah ini untuk mengakses akunmu.</p>
             <a href="${url}" style="display: inline-block; padding: 12px 24px; background-color: #4f46e5; color: #fff; text-decoration: none; border-radius: 6px; font-size: 16px; font-weight: 600;">
