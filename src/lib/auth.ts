@@ -43,13 +43,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 	providers: [
 		Google,
 		Resend({
-			from: "zync.click@vinend.my.id",
+			from: "lisync.click@vinend.my.id",
 			sendVerificationRequest: async ({ identifier, url }) => {
 				const { host } = new URL(url);
 				const response = await resend.emails.send({
-					from: "Zync.click <zync.click@vinend.my.id>",
+					from: "lisync.click <lisync.click@vinend.my.id>",
 					to: identifier,
-					subject: "🔐 Login ke akunmu di Zync.click",
+					subject: "Login to your Lisync.click account now using the secure magic link we’ve sent",
 					html: generateLoginEmailHTML(url, host),
 				});
 				if (response.error) {
