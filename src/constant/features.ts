@@ -1,34 +1,36 @@
 import { IconType } from "react-icons";
-import { FiBarChart, FiLink2, FiShield, FiZap } from "react-icons/fi";
+import { FiLink2, FiTrendingUp, FiEdit, FiCamera } from "react-icons/fi";
+
 export type FeatureProps = {
 	icon: IconType;
 	title: string;
 	description: string;
 	premium: boolean;
 };
+
 export const features_constant: FeatureProps[] = [
 	{
 		icon: FiLink2,
-		title: "Custom Short URLs",
-		description: "Create branded, memorable links that reflect your brand identity.",
-		premium: true,
-	},
-	{
-		icon: FiBarChart,
-		title: "Advanced Analytics",
-		description: "Track clicks, geographic data, and user behavior in real-time.",
-		premium: true,
-	},
-	{
-		icon: FiShield,
-		title: "Link Security",
-		description: "Enterprise-grade security to protect your links and data.",
+		title: "Shortener Link",
+		description: "Perpendek URL panjang Anda secara gratis tanpa batasan dasar.",
 		premium: false,
 	},
 	{
-		icon: FiZap,
-		title: "Lightning Fast",
-		description: "Instant URL shortening with global CDN for maximum speed.",
+		icon: FiTrendingUp,
+		title: "Analytics Click",
+		description: "Lihat jumlah klik dan analisis performa link Anda secara gratis.",
 		premium: false,
+	},
+	{
+		icon: FiEdit,
+		title: "Custom Slug",
+		description: "Buat URL dengan slug khusus sesuai keinginan Anda untuk branding yang maksimal.",
+		premium: true,
+	},
+	{
+		icon: FiCamera,
+		title: "Generate QR Code",
+		description: "Buat kode QR profesional dari link Anda secara instan.",
+		premium: true,
 	},
 ];

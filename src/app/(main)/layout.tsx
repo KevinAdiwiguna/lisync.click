@@ -16,51 +16,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "ShortLink – Shorten URLs with Style & Intelligence",
-	description:
-		"Transform long, messy URLs into clean, branded links with ShortLink. Track clicks, manage URLs, and gain insights with blazing fast performance and enterprise-grade security.",
-	metadataBase: new URL("https://shortlink.io"), // ganti dengan domainmu
-	keywords: [
-		"url shortener",
-		"custom short links",
-		"link analytics",
-		"branded urls",
-		"shorten url",
-		"track clicks",
-		"link management",
-		"ShortLink",
-	],
+	title: "Lisync – Pendekkan Link dengan Gaya & Analitik Profesional",
+	description: "Ubah link panjang menjadi tautan pendek yang profesional dan mudah diingat di Lisync.click. Pantau klik, buat QR Code, dan kelola URL Anda dengan mudah.",
+	metadataBase: new URL("https://lisync.click"),
+	keywords: ["pemendek link", "url shortener indonesia", "link pendek profesional", "qr code generator", "custom short urls", "link analytics", "pendekkan url", "lisync"],
 	icons: {
 		icon: "/favicon.ico",
 		shortcut: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
-		title: "ShortLink – Shorten URLs with Style & Intelligence",
-		description:
-			"Clean, branded links that drive engagement. Track clicks, manage URLs, and analyze traffic with ShortLink.",
-		url: "https://shortlink.io",
-		siteName: "ShortLink",
+		title: "Lisync – Pendekkan Link dengan Gaya & Analitik Profesional",
+		description: "Pendekkan link panjang menjadi branded link yang stylish di Lisync.click. Pantau statistik dan kelola URL Anda dengan aman dan mudah.",
+		url: "https://lisync.click",
+		siteName: "Lisync",
 		images: [
 			{
-				url: "https://shortlink.io/og-image.png", // ganti sesuai OG image kamu
+				url: "https://lisync.click/og-image.png", // ganti sesuai OG image website kamu
 				width: 1200,
 				height: 630,
-				alt: "ShortLink – Shorten URLs with Style",
+				alt: "Lisync – Pemendek Link Profesional",
 			},
 		],
-		locale: "en_US",
+		locale: "id_ID",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "ShortLink – Shorten URLs with Style & Intelligence",
-		description:
-			"Clean, branded links that drive engagement. Track clicks, manage URLs, and analyze traffic with ShortLink.",
-		images: ["https://shortlink.io/og-image.png"], // ganti dengan asset asli
-		creator: "@shortlink",
+		title: "Lisync – Pemendek Link Profesional & Analitik Canggih",
+		description: "Gunakan Lisync.click untuk memendekkan link panjang menjadi URL pendek yang mudah diingat dan profesional.",
+		images: ["https://lisync.click/og-image.png"],
+		creator: "@KevinAdiwiguna", // jika ada akun Twitter resminya
 	},
 };
+
 
 export default function RootLayout({
 	children,

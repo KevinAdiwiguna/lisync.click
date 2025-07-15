@@ -13,44 +13,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Sign In – ShortLink",
-	description:
-		"Sign in to your ShortLink account to manage your branded links, track analytics, and access premium features. Fast, secure, and privacy-first login.",
-	metadataBase: new URL("https://shortlink.io"), // ganti sesuai domain asli
-	keywords: [
-		"ShortLink sign in",
-		"url shortener login",
-		"login shortlink",
-		"sign in to manage links",
-		"link dashboard",
-		"shortlink analytics",
-	],
+	title: "Masuk Akun – Lisync",
+	description: "Masuk ke akun Lisync.click untuk memendekkan link, membuat QR Code, dan mengakses analitik tautan secara profesional. Aman, cepat, dan mudah.",
+	metadataBase: new URL("https://lisync.click"),
+	keywords: ["login lisync", "masuk lisync", "lisync sign in", "url shortener indonesia", "pemendek link login", "kelola link pendek", "dashboard link", "qr code generator login"],
 	openGraph: {
-		title: "Sign In – ShortLink",
-		description:
-			"Access your ShortLink dashboard to manage your shortened URLs, view analytics, and customize your experience.",
-		url: "https://shortlink.io/signin", // sesuaikan path
-		siteName: "ShortLink",
+		title: "Masuk Akun – Lisync",
+		description: "Akses dashboard Lisync.click dan mulai kelola tautan pendek Anda dengan mudah. Pantau analitik dan buat QR Code kapan saja.",
+		url: "https://lisync.click/signin",
+		siteName: "Lisync",
 		images: [
 			{
-				url: "https://shortlink.io/og-image-signin.png", // ganti ke OG image login kamu
+				url: "https://lisync.click/og-image-signin.png",
 				width: 1200,
 				height: 630,
-				alt: "ShortLink Sign In",
+				alt: "Masuk Akun Lisync",
 			},
 		],
-		locale: "en_US",
+		locale: "id_ID",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Sign In – ShortLink",
-		description:
-			"Sign in to manage your links, view analytics, and access premium tools on ShortLink.",
-		images: ["https://shortlink.io/og-image-signin.png"], // sesuaikan
-		creator: "@shortlink",
+		title: "Masuk Akun – Lisync",
+		description: "Login ke Lisync.click untuk mengelola tautan pendek, membuat QR Code, dan mengakses analitik profesional.",
+		images: ["https://lisync.click/og-image-signin.png"],
+		creator: "@KevinAdiwiguna",
 	},
 };
+
 
 export default function RootLayout({
 	children,
