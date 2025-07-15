@@ -28,7 +28,7 @@ export default function Home() {
 						</FadeUpItem>
 						<FadeUpItem>
 							<div className="flex justify-center flex-col sm:flex-row w-full items-center gap-4 mb-16">
-								<Link href={"/signin"}>
+								<Link href={"/signin"} className="w-full sm:w-fit">
 									<Button className="py-4 px-5 w-full sm:w-fit" color="primary" iconRight={<FaArrowRightLong />}>
 										Mulai Gratis Sekarang
 									</Button>
