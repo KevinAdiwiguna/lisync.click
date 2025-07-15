@@ -1,25 +1,29 @@
-import { FiCheck } from "react-icons/fi";
+import { FiCheck, FiX } from "react-icons/fi";
 import Button from "../atom/button";
 import Link from "next/link";
+import { all_features, PricingFeatureKey } from "@/constant/pricing-plan";
 
 type PricingCardProps = {
 	title: string;
 	price: string;
-	period: string;
 	description: string;
-	features: string[];
+	features: Record<PricingFeatureKey, boolean | "incoming">;
+	limits: {
+		short_link_limit: number;
+		qr_code_limit: number;
+	};
 	buttonLabel: string;
 	isPremium?: boolean;
 	isPopular?: boolean;
 	gradient?: boolean;
 };
 
-export const PricingCard = ({ title, price, period, description, features, buttonLabel, isPremium = false, isPopular = false, gradient = false }: PricingCardProps) => {
+export const PricingCard = ({ title, price, description, features, limits, buttonLabel, isPremium = false, isPopular = false, gradient = false }: PricingCardProps) => {
 	return (
 		<div className={`${gradient ? "bg-gradient-to-br from-primary/5 to-secondary/10 shadow-xl border-base-300" : "bg-base-100/75 border-base-300 shadow-lg"} backdrop-blur-xl rounded-box p-8 border shadow-black/10 relative`}>
 			{isPopular && (
-				<div className="absolute -top-4 left-1/2 -translate-x-1/2">
-					<div className="inline-flex items-center text-xs font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 rounded-full">Most Popular</div>
+				<div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+					<span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Paling Populer</span>
 				</div>
 			)}
 
@@ -37,31 +41,36 @@ export const PricingCard = ({ title, price, period, description, features, butto
 
 				<div className="mb-4">
 					<span className="text-4xl font-light">{price}</span>
-					<span className="">/{period}</span>
 				</div>
 				<p className="font-light">{description}</p>
 			</div>
 
-			<ul className="space-y-4 mb-8">
-				{features.map((feature, index) => (
-					<li key={index} className="flex items-center gap-3">
-						<FiCheck className="h-5 w-5 text-green-600" />
-						<span className="">{feature}</span>
-					</li>
-				))}
+			<div className="mb-4 space-y-1 text-center text-sm">
+				<p>
+					<strong>{limits.short_link_limit}</strong> Short Link
+				</p>
+				<p>
+					<strong>{limits.qr_code_limit}</strong> QR Code
+				</p>
+			</div>
+
+			<ul className="space-y-4 mb-8 text-sm">
+				{all_features.map((feature) => {
+					const value = features[feature.key];
+					return (
+						<li key={feature.key} className="flex justify-between items-center">
+							<span>{feature.label}</span>
+							{value === true ? <FiCheck className="h-5 w-5 text-green-500" /> : value === "incoming" ? <span className="text-xs text-gray-500 italic">Segera Hadir</span> : <FiX className="h-5 w-5 text-red-500" />}
+						</li>
+					);
+				})}
 			</ul>
 
-			{isPremium ? (
-        <Link href="/signin">
-				<button className={`cursor-pointer inline-flex items-center justify-center text-sm font-medium px-4 py-2 w-full h-12 rounded-field transition-colors bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"`}>{buttonLabel}</button>
-        </Link>
-			) : (
-        <Link href="/signin">
-				<Button color="secondary" className="w-full px-4 py-2 h-12">
+			<Link href="/signin">
+				<Button color={isPremium ? "primary" : "secondary"} className="w-full px-4 py-2 h-12">
 					{buttonLabel}
 				</Button>
-        </Link>
-			)}
+			</Link>
 		</div>
 	);
 };

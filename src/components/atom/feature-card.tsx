@@ -3,7 +3,7 @@ import { FaCrown } from "react-icons/fa";
 
 export const FeatureCard = ({ icon: Icon, title, description, premium }: FeatureProps) => {
   return (
-		<div className="bg-base-100/75 backdrop-blur-xl rounded-box shadow-xl p-8 border border-base-300">
+		<div className="bg-base-100/75 backdrop-blur-xl rounded-box shadow-xl p-8 border border-base-300 min-h-72">
 			<div className="w-16 h-16 bg-primary/15 rounded-3xl flex items-center justify-center mb-6">
 				<Icon className="h-8 w-8 text-primary" />
 			</div>

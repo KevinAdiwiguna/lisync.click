@@ -7,25 +7,25 @@ export type TestimonialProps = {
 };
 
 export const testimonials_constant: TestimonialProps[] = [
-  {
-    name: "Sarah Johnson",
-    role: "Marketing Director",
-    company: "TechCorp",
-    content: "ShortLink has transformed how we share content. The analytics are incredible!",
-    avatar: "",
-  },
-  {
-    name: "Michael Chen",
-    role: "Social Media Manager",
-    company: "StartupXYZ",
-    content: "Custom URLs have boosted our brand recognition significantly. Highly recommended!",
-    avatar: "",
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Content Creator",
-    company: "CreativeStudio",
-    content: "The dashboard is beautiful and the insights help me understand my audience better.",
-    avatar: "",
-  },
+	{
+		name: "Rina Safitri",
+		role: "Pemilik Usaha Kecil",
+		company: "Rina Bakery",
+		content: "Lisync.click sangat membantu bisnis saya! Link jadi lebih rapi dan pelanggan mudah mengakses menu kami.",
+		avatar: "/avatars/rina.jpg",
+	},
+	{
+		name: "Bagus Pratama",
+		role: "Mahasiswa",
+		company: "Universitas Indonesia",
+		content: "Buat tugas atau share link jadi lebih simpel pakai Lisync.click. QR code-nya juga keren banget!",
+		avatar: "/avatars/bagus.jpg",
+	},
+	{
+		name: "Dewi Lestari",
+		role: "Sosial Media Spesialis",
+		company: "Agensi Kreatif Jakarta",
+		content: "Dengan custom URL dan analytics Lisync.click, kampanye klien jadi lebih terukur dan profesional.",
+		avatar: "/avatars/dewi.jpg",
+	},
 ];
