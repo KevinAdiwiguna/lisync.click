@@ -53,10 +53,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                   {children}
-            </body>
-        </html>
-    );
+			<html lang="en">
+				<meta name="apple-mobile-web-app-title" content="Lisync" />
+				<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+			</html>
+		);
 }

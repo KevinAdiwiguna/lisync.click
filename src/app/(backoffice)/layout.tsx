@@ -60,6 +60,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<meta name="apple-mobile-web-app-title" content="Lisync" />
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<ReactQueryProvider>
 					<NavProvider>
