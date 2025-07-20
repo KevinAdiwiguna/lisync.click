@@ -17,9 +17,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: "Lisync – Pendekkan Link dengan Gaya & Analitik Profesional",
-	description: "Ubah link panjang menjadi tautan pendek yang profesional dan mudah diingat di Lisync.click. Pantau klik, buat QR Code, dan kelola URL Anda dengan mudah.",
+	description: "Ubah link panjang menjadi tautan pendek yang profesional dan mudah diingat di Lisync. Pantau klik, buat QR Code, dan kelola URL Anda dengan mudah.",
 	metadataBase: new URL("https://lisync.click"),
-	keywords: ["pemendek link", "url shortener indonesia", "link pendek profesional", "qr code generator", "custom short urls", "link analytics", "pendekkan url", "lisync"],
+	keywords: ["pemendek link", "pemendek url", "url shortener indonesia", "link pendek profesional", "qr code generator", "pembuat qr code indonesia", "custom short urls", "link analytics", "pendekkan url", "link shortener gratis", "lisync", "lisync.click"],
 	icons: {
 		icon: "/favicon.ico",
 		shortcut: "/favicon.ico",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		title: "Lisync – Pendekkan Link dengan Gaya & Analitik Profesional",
-		description: "Pendekkan link panjang menjadi branded link yang stylish di Lisync.click. Pantau statistik dan kelola URL Anda dengan aman dan mudah.",
+		description: "Pendekkan link panjang menjadi branded link yang stylish di Lisync. Pantau statistik dan kelola URL Anda dengan aman dan mudah.",
 		url: "https://lisync.click",
 		siteName: "Lisync",
 		images: [
 			{
-				url: "https://lisync.click/og-image.png", // ganti sesuai OG image website kamu
+				url: "https://lisync.click/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "Lisync – Pemendek Link Profesional",
+				alt: "Lisync – Pemendek Link dan Pembuat QR Code Profesional Indonesia",
 			},
 		],
 		locale: "id_ID",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary_large_image",
 		title: "Lisync – Pemendek Link Profesional & Analitik Canggih",
-		description: "Gunakan Lisync.click untuk memendekkan link panjang menjadi URL pendek yang mudah diingat dan profesional.",
+		description: "Gunakan Lisync. untuk memendekkan link panjang menjadi URL pendek yang mudah diingat dan profesional.",
 		images: ["https://lisync.click/og-image.png"],
-		creator: "@KevinAdiwiguna", // jika ada akun Twitter resminya
+		creator: "@kepinkun112",
 	},
 };
 
@@ -58,6 +58,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<meta name="apple-mobile-web-app-title" content="Lisync" />
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<NavProvider>
 					<Navbar />

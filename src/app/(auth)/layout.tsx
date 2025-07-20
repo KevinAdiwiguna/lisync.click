@@ -24,10 +24,10 @@ export const metadata: Metadata = {
 		siteName: "Lisync",
 		images: [
 			{
-				url: "https://lisync.click/og-image-signin.png",
+				url: "https://lisync.click/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "Masuk Akun Lisync",
+				alt: "Masuk Akun Lisync – Kelola Link Pendek & QR Code",
 			},
 		],
 		locale: "id_ID",
@@ -37,10 +37,11 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Masuk Akun – Lisync",
 		description: "Login ke Lisync.click untuk mengelola tautan pendek, membuat QR Code, dan mengakses analitik profesional.",
-		images: ["https://lisync.click/og-image-signin.png"],
-		creator: "@KevinAdiwiguna",
+		images: ["https://lisync.click/og-image.png"],
+		creator: "@kepinkun112",
 	},
 };
+
 
 
 export default function RootLayout({
@@ -50,9 +51,8 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				{children}
-			</body>
+			<meta name="apple-mobile-web-app-title" content="Lisync" />
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
 		</html>
 	);
 }

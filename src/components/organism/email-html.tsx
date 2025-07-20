@@ -7,7 +7,7 @@ export function generateLoginEmailHTML(url: string, host: string) {
         <tr>
           <td align="center">
             <img src="${process.env.AUTH_URL}/logo.png" alt="Lisync.click Logo" width="60" style="margin-bottom: 16px;" />
-            <h1 style="color: #333; font-size: 24px; margin: 0 0 10px;">Sign in to <strong>Lisync.click</strong></h1>
+            <h1 style="color: #333; font-size: 24px; margin: 0 0 10px;">Sign in to <strong>Lisync</strong></h1>
             <p style="font-size: 15px; color: #666; margin-bottom: 20px;">
               You requested to sign in to your account on <strong>Lisync.click</strong>.
               Please click the button below to securely access your dashboard using your unique, one-time magic link.

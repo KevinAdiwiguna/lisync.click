@@ -18,39 +18,40 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "ShortLink – Shorten URLs with Style & Intelligence",
-	description: "Transform long, messy URLs into clean, branded links with ShortLink. Track clicks, manage URLs, and gain insights with blazing fast performance and enterprise-grade security.",
-	metadataBase: new URL("https://shortlink.io"),
-	keywords: ["url shortener", "custom short links", "link analytics", "branded urls", "shorten url", "track clicks", "link management", "ShortLink"],
+	title: "Dashboard – Kelola Link Pendek & Analitik di Lisync.click",
+	description: "Kelola link pendek Anda secara profesional di dashboard Lisync.click. Pantau klik, buat tautan bermerek, dan analisis trafik dengan keamanan tingkat lanjut.",
+	metadataBase: new URL("https://lisync.click"),
+	keywords: ["pemendek link", "kelola link pendek", "analitik klik", "tautan pendek profesional", "pendekkan url", "branded urls", "manajemen link", "Lisync", "Lisync.click"],
 	icons: {
 		icon: "/favicon.ico",
 		shortcut: "/favicon.ico",
 		apple: "/apple-touch-icon.png",
 	},
 	openGraph: {
-		title: "ShortLink – Shorten URLs with Style & Intelligence",
-		description: "Clean, branded links that drive engagement. Track clicks, manage URLs, and analyze traffic with ShortLink.",
-		url: "https://shortlink.io",
-		siteName: "ShortLink",
+		title: "Dashboard – Kelola Link Pendek & Analitik di Lisync.click",
+		description: "Akses dashboard Lisync.click untuk mengelola tautan pendek, memantau statistik klik, dan menganalisis trafik dengan mudah.",
+		url: "https://lisync.click/dashboard",
+		siteName: "Lisync.click",
 		images: [
 			{
-				url: "https://shortlink.io/og-image.png", // ganti sesuai OG image kamu
+				url: "https://lisync.click/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "ShortLink – Shorten URLs with Style",
+				alt: "Dashboard Lisync.click – Kelola Link Pendek & Analitik",
 			},
 		],
-		locale: "en_US",
+		locale: "id_ID",
 		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "ShortLink – Shorten URLs with Style & Intelligence",
-		description: "Clean, branded links that drive engagement. Track clicks, manage URLs, and analyze traffic with ShortLink.",
-		images: ["https://shortlink.io/og-image.png"], // ganti dengan asset asli
-		creator: "@shortlink",
+		title: "Dashboard Lisync.click – Kelola Link & Pantau Statistik Klik",
+		description: "Kelola link pendek dan QR Code Anda dengan mudah di Lisync.click. Pantau klik, analisis trafik, dan buat tautan bermerek secara profesional.",
+		images: ["https://lisync.click/og-image.png"],
+		creator: "@kepinkun112",
 	},
 };
+
 
 export default function RootLayout({
 	children,
@@ -59,6 +60,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<meta name="apple-mobile-web-app-title" content="Lisync" />
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<ReactQueryProvider>
 					<NavProvider>

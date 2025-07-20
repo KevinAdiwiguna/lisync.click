@@ -47,9 +47,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			sendVerificationRequest: async ({ identifier, url }) => {
 				const { host } = new URL(url);
 				const response = await resend.emails.send({
-					from: "lisync.click <lisync.click@vinend.my.id>",
+					from: "lisync<lisync.click@vinend.my.id>",
 					to: identifier,
-					subject: "Login to your Lisync.click account now using the secure magic link we’ve sent",
+					subject: "Login to your Lisync account now using the secure magic link we’ve sent",
 					html: generateLoginEmailHTML(url, host),
 				});
 				if (response.error) {

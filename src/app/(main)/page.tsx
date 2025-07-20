@@ -20,11 +20,11 @@ export default function Home() {
 					<div className="max-w-4xl mx-auto grid justify-center items-center text-center pt-20">
 						<FadeUpItem>
 							<h1 className="text-5xl md:text-6xl font-light my-5">
-								Pendekkan Link dengan <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Gaya di lisync.click</span>
+								Pendekkan Link dengan <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Gaya di lisync</span>
 							</h1>
 						</FadeUpItem>
 						<FadeUpItem>
-							<p className="text-lg md:text-xl font-light mb-12 leading-relaxed">Ubah link panjang dan membingungkan menjadi URL pendek yang profesional dan mudah diingat bersama lisync.click. Dapatkan tautan merek yang meningkatkan klik dan memberikan analitik bermanfaat.</p>
+							<p className="text-lg md:text-xl font-light mb-12 leading-relaxed">Ubah link panjang dan membingungkan menjadi URL pendek yang profesional dan mudah diingat bersama lisync. Dapatkan tautan merek yang meningkatkan klik dan memberikan analitik bermanfaat.</p>
 						</FadeUpItem>
 						<FadeUpItem>
 							<div className="flex justify-center flex-col sm:flex-row w-full items-center gap-4 mb-16">
@@ -46,7 +46,7 @@ export default function Home() {
 					<div className="grid justify-center items-center text-center mb-20">
 						<FadeUpItem>
 							<h2 className="text-5xl font-light mb-6">
-								Fitur Canggih di <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">lisync.click</span>
+								Fitur Canggih di <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">lisync</span>
 							</h2>
 						</FadeUpItem>
 						<FadeUpItem>
@@ -94,7 +94,7 @@ export default function Home() {
 							<h2 className="text-4xl md:text-5xl font-semibold mb-4">Dipercaya Ribuan Pengguna</h2>
 						</FadeInItem>
 						<FadeInItem>
-							<p className="text-lg md:text-xl font-light text-gray-600">Lihat apa kata pelanggan tentang Lisync.click sebagai layanan pemendek tautan mereka.</p>
+							<p className="text-lg md:text-xl font-light text-gray-600">Lihat apa kata pelanggan tentang Lisync sebagai layanan pemendek tautan mereka.</p>
 						</FadeInItem>
 					</div>
 
