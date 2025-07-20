@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Button from "@/components/atom/button";
 import { useNav } from "@/context/nav-context";
+import Image from "next/image";
 
 export default function Navbar() {
 	return (
@@ -23,7 +24,8 @@ function MobileNav() {
 
 	return (
 		<div className="flex items-center justify-between p-4">
-			<div className="">
+			<div className="flex justify-center items-center">
+				<Image src={"/logo.png"} alt="Lisync Logo" width={35} height={35} className="inline-block mr-2" />
 				<span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">lisync</span>
 			</div>
 			<button onClick={toggle} aria-label="Toggle Menu">
@@ -58,7 +60,8 @@ function MobileNav() {
 function DesktopNav() {
 	return (
 		<div className="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto w-full">
-			<div className="">
+			<div className="flex justify-center items-center">
+				<Image src={"/logo.png"} alt="Lisync Logo" width={35} height={35} className="inline-block mr-2" />
 				<span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">lisync</span>
 			</div>
 			<div className="flex items-center gap-6">
